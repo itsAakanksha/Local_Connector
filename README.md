@@ -4,4 +4,4 @@ A location-based social platform where neighbors connect, share recommendations,
 
 **Features:** User authentication & profiles • Community feed with post filtering • Like & reply system • Dark/light theme • Location-based posts  
 **Tech Stack:** React + Vite, Node.js + Express, MongoDB, Tailwind CSS  
-**Quick Start:** 1. Install: `cd backend && npm install && cd ../frontend && npm install` 2. Setup `.env` files (MongoDB URI, JWT secret) 3. Run: `cd backend && npm run dev` then `cd frontend && npm run dev`
+**Quick Start:** 1. Install: `cd backend && npm install && cd ../frontend && npm install` 2. Setup `.env` files (MongoDB URI, JWT secret) 3. Run: `cd backend && npm start` then `cd frontend && npm run dev`
