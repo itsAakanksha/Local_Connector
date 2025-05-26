@@ -40,4 +40,4 @@ git clone https://github.com/your-username/cityscope.git
 cd cityscope
 1. Install: `cd backend && npm install && cd ../frontend && npm install`
 2. Setup `.env` files (MongoDB URI, JWT secret)
-3. Run: `cd backend && npm run dev` then `cd frontend && npm run dev`
+3. Run: `cd backend && npm start` then `cd frontend && npm run dev`
