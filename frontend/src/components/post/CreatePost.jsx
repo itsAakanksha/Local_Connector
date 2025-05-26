@@ -184,15 +184,14 @@ const CreatePost = () => {
               What are you sharing?
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {postTypes.map((type) => (
-                <button
+              {postTypes.map((type) => (                <button
                   key={type.value}
                   type="button"
                   onClick={() => handleTypeChange(type.value)}
-                  className={`p-4 text-left rounded-lg border transition-all duration-200 ${
+                  className={`p-4 text-left rounded-lg border-2 transition-all duration-200 ${
                     formData.type === type.value
-                      ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                      : 'bg-card border-border hover:bg-muted hover:border-border'
+                      ? 'bg-primary text-primary-foreground border-primary ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg transform scale-[1.02]'
+                      : 'bg-card border-border hover:bg-muted hover:border-muted-foreground hover:shadow-md'
                   }`}
                 >
                   <div className="flex items-start space-x-2">

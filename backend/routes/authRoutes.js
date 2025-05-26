@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const { generateToken } = require('../middleware/authMiddleware');
+const { generateToken, protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -154,13 +154,46 @@ router.post('/login', [
                 },
                 token
             }
-        });
-
-    } catch (error) {
+        });    } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({
             success: false,
             message: 'Server error during login'
+        });
+    }
+});
+
+// @desc    Get current user
+// @route   GET /api/auth/me
+// @access  Private
+router.get('/me', protect, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).select('-passwordHash');
+        
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        res.json({
+            success: true,
+            data: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                bio: user.bio,
+                profileImageUrl: user.profileImageUrl,
+                location: user.location
+            }
+        });
+
+    } catch (error) {
+        console.error('Get current user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error fetching user data'
         });
     }
 });

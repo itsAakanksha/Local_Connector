@@ -10,13 +10,13 @@ export const useTheme = () => {
   return context;
 };
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    // Check localStorage first, then system preference
+export const ThemeProvider = ({ children }) => {  const [theme, setTheme] = useState(() => {
+    // Check localStorage first, then default to light
     const saved = localStorage.getItem('cityscope-theme');
     if (saved) return saved;
     
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Default to light theme (prefer light mode)
+    return 'light';
   });
 
   useEffect(() => {

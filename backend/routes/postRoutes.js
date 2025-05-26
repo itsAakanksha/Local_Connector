@@ -329,13 +329,11 @@ router.get('/:id/replies', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
-        const skip = (page - 1) * limit;
-
-        const replies = await Reply.find({ 
+        const skip = (page - 1) * limit;        const replies = await Reply.find({ 
             postId: req.params.id, 
             isActive: true 
         })
-            .populate('authorId', 'username profileImageUrl')
+            .populate('authorId', 'username name profileImageUrl')
             .sort({ createdAt: 1 }) // Oldest first for replies
             .skip(skip)
             .limit(limit);

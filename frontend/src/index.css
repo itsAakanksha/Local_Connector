@@ -4,18 +4,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  --color-primary-950: #082f49;
+  --color-primary-50: #f0fdfa;
+  --color-primary-100: #ccfbf1;
+  --color-primary-200: #99f6e4;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;  /* Primary action in dark mode */
+  --color-primary-500: #14b8a6;  /* Main primary */
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
+  --color-primary-950: #042f2e;
 
+  /* Enhanced Secondary - Midnight Observatory (Deep Space Inspired) */
   --color-secondary-50: #f8fafc;
   --color-secondary-100: #f1f5f9;
   --color-secondary-200: #e2e8f0;
@@ -23,28 +24,32 @@
   --color-secondary-400: #94a3b8;
   --color-secondary-500: #64748b;
   --color-secondary-600: #475569;
-  --color-secondary-700: #334155;
-  --color-secondary-800: #1e293b;
-  --color-secondary-900: #0f172a;
-  --color-secondary-950: #020617;
+  --color-secondary-700: #2A3649;  /* Adjusted: Richer card surfaces */
+  --color-secondary-800: #040507;  /* Dark UI elements */
+  --color-secondary-900: #0B1120;  /* Main dark bg - Deep Space Blue */
+  --color-secondary-950: #070A0F;  /* Ultra dark accents */
 
-  --color-accent-50: #fff7ed;
-  --color-accent-100: #ffedd5;
-  --color-accent-200: #fed7aa;
-  --color-accent-300: #fdba74;
-  --color-accent-400: #fb923c;
-  --color-accent-500: #f97316;
-  --color-accent-600: #ea580c;
-  --color-accent-700: #c2410c;
-  --color-accent-800: #9a3412;
-  --color-accent-900: #7c2d12;
-  --color-accent-950: #431407;
 
+  /* NEW: Accent - Golden Hour Amber (Warm, Inviting, Energetic) */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;  /* Good for active elements in dark mode */
+  --color-accent-500: #f59e0b;  /* Main accent */
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
+  --color-accent-950: #451a03;
+
+  /* Semantic Colors - Generally good, ensure good contrast on new dark backgrounds for text/icons */
+  /* Success (Green) */
   --color-success-50: #f0fdf4;
   --color-success-100: #dcfce7;
   --color-success-200: #bbf7d0;
   --color-success-300: #86efac;
-  --color-success-400: #4ade80;
+  --color-success-400: #4ade80; /* Often better for text in dark mode */
   --color-success-500: #22c55e;
   --color-success-600: #16a34a;
   --color-success-700: #15803d;
@@ -52,23 +57,26 @@
   --color-success-900: #14532d;
   --color-success-950: #052e16;
 
+  /* Warning (Yellow/Amber - overlaps with new accent, but often more intense for warnings) */
+  /* Using existing warning, but ensure it stands out from the new accent if both are used. */
   --color-warning-50: #fefce8;
   --color-warning-100: #fef9c3;
   --color-warning-200: #fef08a;
   --color-warning-300: #fde047;
   --color-warning-400: #facc15;
-  --color-warning-500: #eab308;
+  --color-warning-500: #eab308; /* Main warning */
   --color-warning-600: #ca8a04;
   --color-warning-700: #a16207;
   --color-warning-800: #854d0e;
   --color-warning-900: #713f12;
   --color-warning-950: #422006;
 
+  /* Error (Red) */
   --color-error-50: #fef2f2;
   --color-error-100: #fee2e2;
   --color-error-200: #fecaca;
   --color-error-300: #fca5a5;
-  --color-error-400: #f87171;
+  --color-error-400: #f87171; /* Often better for text in dark mode */
   --color-error-500: #ef4444;
   --color-error-600: #dc2626;
   --color-error-700: #b91c1c;
@@ -76,6 +84,7 @@
   --color-error-900: #7f1d1d;
   --color-error-950: #450a0a;
 
+  /* Fonts & Spacing - Keep as is, they are good choices */
   --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-family-display: 'Cal Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
@@ -116,25 +125,25 @@
 
 /* Base styles */
 * {
-  border-color: #e2e8f0;
+  border-color: var(--color-secondary-200); /* Light theme default border */
 }
 
 :root[class~="dark"] * {
-  border-color: #1e293b;
+  border-color: var(--color-secondary-900); /* Dark theme default border - more visible */
 }
 
 body {
-  background-color: white;
-  color: #0f172a;
-  font-family: var(--font-sans);
+  background-color: white; /* Can also use --color-secondary-50 for a slightly off-white */
+  color: var(--color-secondary-900); /* Main text color for light mode */
+  font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
 :root[class~="dark"] body {
-  background-color: #020617;
-  color: #f1f5f9;
+  background-color: black; /* NEW Dark Body BG - Richer Dark */
+  color: var(--color-secondary-100); /* Main text color for dark mode - very light gray */
 }
 
 html {
@@ -143,14 +152,15 @@ html {
 
 /* Component styles using standard CSS */
 
-.btn-secondary {
-  background-color: #f1f5f9;
-  color: #0f172a;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
+/* Primary Button (Example using new primary) */
+.btn-primary {
+  background-color: var(--color-primary-500);
+  color: white;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--border-radius-xl);
   transition: all 0.2s ease-in-out;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--box-shadow-soft);
   outline: none;
   border: none;
   cursor: pointer;
@@ -159,25 +169,61 @@ html {
   justify-content: center;
 }
 
+.btn-primary:hover {
+  background-color: var(--color-primary-600);
+  box-shadow: var(--box-shadow-medium);
+  transform: translateY(-1px);
+}
+
+:root[class~="dark"] .btn-primary {
+  background-color: var(--color-primary-400);
+  color: var(--color-primary-950);
+}
+
+:root[class~="dark"] .btn-primary:hover {
+  background-color: var(--color-primary-300);
+}
+
+
+.btn-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--border-radius-xl);
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--box-shadow-soft);
+  outline: none;
+  border: 1px solid var(--color-secondary-200);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-secondary:hover {
-  background-color: #e2e8f0;
-  box-shadow: var(--shadow-medium);
+  background-color: var(--color-secondary-200);
+  border-color: var(--color-secondary-300);
+  box-shadow: var(--box-shadow-medium);
+  transform: translateY(-1px);
 }
 
 :root[class~="dark"] .btn-secondary {
-  background-color: #1e293b;
-  color: #f1f5f9;
+  background-color: var(--color-secondary-800);
+  color: var(--color-secondary-100);
+  border: 1px solid var(--color-secondary-700);
 }
 
 :root[class~="dark"] .btn-secondary:hover {
-  background-color: #334155;
+  background-color: var(--color-secondary-700);
+  border-color: var(--color-secondary-600);
 }
 
 .btn-ghost {
-  color: #334155;
+  color: var(--color-primary-600);
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--border-radius-xl);
   transition: all 0.2s ease-in-out;
   outline: none;
   border: none;
@@ -189,199 +235,322 @@ html {
 }
 
 .btn-ghost:hover {
-  background-color: #f1f5f9;
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
 }
 
 :root[class~="dark"] .btn-ghost {
-  color: #cbd5e1;
+  color: var(--color-primary-400);
 }
 
 :root[class~="dark"] .btn-ghost:hover {
-  background-color: #1e293b;
+  background-color: rgba(45, 212, 191, 0.1);
+  color: var(--color-primary-300);
+}
+
+/* Better outline button styles */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary-600);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border: 1.5px solid var(--color-primary-300);
+  border-radius: var(--border-radius-xl);
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-400);
+  color: var(--color-primary-700);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+:root[class~="dark"] .btn-outline {
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-600);
+}
+
+:root[class~="dark"] .btn-outline:hover {
+  background-color: rgba(45, 212, 191, 0.1);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-300);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.1);
+}
+
+/* Modal theme variables */
+:root {
+  --modal-bg: white;
+  --modal-border: var(--color-secondary-200);
+  --modal-text: var(--color-secondary-900);
+}
+
+:root[class~="dark"] {
+  --modal-bg: var(--color-secondary-800);   /* Darker surface for modals */
+  --modal-border: var(--color-secondary-700);
+  --modal-text: var(--color-secondary-100);
+}
+
+/* Universal theme-aware utility classes - Adapt to new secondary values */
+.theme-bg {
+  background-color: white;
+}
+:root[class~="dark"] .theme-bg {
+  background-color: var(--color-secondary-800); /* Match modal or slightly different surface */
+}
+
+.theme-text {
+  color: var(--color-secondary-900);
+}
+:root[class~="dark"] .theme-text {
+  color: var(--color-secondary-100);
+}
+
+.theme-border {
+  border-color: var(--color-secondary-200);
+}
+:root[class~="dark"] .theme-border {
+  border-color: var(--color-secondary-700);
+}
+
+.theme-bg-secondary {
+  background-color: var(--color-secondary-100);
+}
+:root[class~="dark"] .theme-bg-secondary {
+  background-color: var(--color-secondary-700); /* Slightly lighter than main dark bg */
+}
+
+.theme-text-secondary {
+  color: var(--color-secondary-500);
+}
+:root[class~="dark"] .theme-text-secondary {
+  color: var(--color-secondary-400);
 }
 
 .input-field {
   width: 100%;
   padding: 0.75rem 1rem;
   background-color: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  color: #0f172a;
+  border: 1px solid var(--color-secondary-300); /* Slightly more visible border */
+  border-radius: var(--border-radius-xl);
+  color: var(--color-secondary-900);
   transition: all 0.2s ease-in-out;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--box-shadow-soft);
   outline: none;
 }
 
 .input-field::placeholder {
-  color: #64748b;
+  color: var(--color-secondary-400);
 }
 
 .input-field:focus {
-  box-shadow: 0 0 0 2px #3b82f6, var(--shadow-soft);
-  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--color-primary-300), var(--box-shadow-soft); /* Use lighter primary for focus ring */
+  border-color: var(--color-primary-400);
 }
 
 :root[class~="dark"] .input-field {
-  background-color: #0f172a;
-  border-color: #334155;
-  color: #f1f5f9;
+  background-color: var(--color-secondary-800); /* Darker input field */
+  border-color: var(--color-secondary-600);
+  color: var(--color-secondary-100);
 }
 
 :root[class~="dark"] .input-field::placeholder {
-  color: #94a3b8;
+  color: var(--color-secondary-400); /* Same as light mode often works, or slightly lighter */
+}
+
+:root[class~="dark"] .input-field:focus {
+  box-shadow: 0 0 0 2px var(--color-primary-600), var(--box-shadow-soft);
+  border-color: var(--color-primary-500);
 }
 
 .card {
   background-color: white;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid #f1f5f9;
+  border-radius: var(--border-radius-2xl); /* Slightly larger radius for modern feel */
+  box-shadow: var(--box-shadow-soft);
+  border: 1px solid var(--color-secondary-100); /* Subtle border */
   transition: all 0.2s ease-in-out;
 }
 
 :root[class~="dark"] .card {
-  background-color: #0f172a;
-  border-color: #1e293b;
+  background-color: var(--color-secondary-800); /* Card BG for Dark Mode */
+  border-color: var(--color-secondary-700); /* Border for cards in Dark Mode */
 }
 
 .card-hover:hover {
-  box-shadow: var(--shadow-medium);
-  border-color: #e2e8f0;
+  box-shadow: var(--box-shadow-medium);
+  border-color: var(--color-secondary-200);
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
 :root[class~="dark"] .card-hover:hover {
-  border-color: #334155;
+  border-color: var(--color-secondary-600);
+  box-shadow: 0 6px 30px -7px rgba(0,0,0,0.2); /* Darker, more diffuse shadow for dark mode if needed */
 }
 
+/* Post Type Badges - Adjusting for new dark theme and primary/accent colors */
 .post-type-badge {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.625rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  border-radius: var(--border-radius-xl); /* Consistent rounded corners */
+  font-size: var(--font-size-xs);
+  font-weight: 600; /* Slightly bolder */
+  text-transform: capitalize;
 }
 
+/* Recommendation (Using Success) */
 .post-type-recommend {
-  background-color: #f0fdf4;
-  color: #15803d;
+  background-color: var(--color-success-50);
+  color: var(--color-success-700);
+  border: 1px solid var(--color-success-200);
 }
-
 :root[class~="dark"] .post-type-recommend {
-  background-color: rgba(20, 83, 45, 0.2);
-  color: #4ade80;
+  background-color: rgba(var(--color-success-500rgb), 0.15); /* Use RGB for alpha or a fixed color */
+  /* Assuming --color-success-500rgb: 34, 197, 94 */
+  /* background-color: rgba(34, 197, 94, 0.15); */
+  color: var(--color-success-300);
+  border: 1px solid rgba(var(--color-success-500rgb), 0.3);
 }
 
+/* Help Request (Using Primary) */
 .post-type-help {
-  background-color: #eff6ff;
-  color: #1d4ed8;
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-200);
 }
-
 :root[class~="dark"] .post-type-help {
-  background-color: rgba(30, 58, 138, 0.2);
-  color: #60a5fa;
+  background-color: rgba(var(--color-primary-500rgb), 0.15); /* Use RGB for alpha or a fixed color */
+  /* Assuming --color-primary-500rgb: 20, 184, 166 */
+  /* background-color: rgba(20, 184, 166, 0.15); */
+  color: var(--color-primary-300);
+  border: 1px solid rgba(var(--color-primary-500rgb), 0.3);
 }
 
+/* Local Update (Using a Neutral or a specific new color like a calm Purple/Magenta) */
+/* For now, let's use a desaturated secondary shade for distinctness */
 .post-type-update {
-  background-color: #fdf4ff;
-  color: #a21caf;
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+  border: 1px solid var(--color-secondary-200);
 }
-
 :root[class~="dark"] .post-type-update {
-  background-color: rgba(112, 26, 117, 0.2);
-  color: #e879f9;
+  background-color: var(--color-secondary-700); /* Using a darker gray for a neutral feel */
+  color: var(--color-secondary-200);
+  border: 1px solid var(--color-secondary-600);
 }
 
+/* Event Announcement (Using Accent) */
 .post-type-event {
-  background-color: #fffbeb;
-  color: #b45309;
+  background-color: var(--color-accent-50);
+  color: var(--color-accent-700);
+  border: 1px solid var(--color-accent-200);
+}
+:root[class~="dark"] .post-type-event {
+  background-color: rgba(var(--color-accent-500rgb), 0.15); /* Use RGB for alpha or a fixed color */
+  /* Assuming --color-accent-500rgb: 245, 158, 11 */
+  /* background-color: rgba(245, 158, 11, 0.15); */
+  color: var(--color-accent-300);
+  border: 1px solid rgba(var(--color-accent-500rgb), 0.3);
 }
 
-:root[class~="dark"] .post-type-event {
-  background-color: rgba(120, 53, 15, 0.2);
-  color: #fbbf24;
-}
 
 .glass-effect {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.65); /* Slightly less transparent for better readability */
+  backdrop-filter: blur(10px); /* Adjusted blur */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Soft shadow for glass */
 }
 
 :root[class~="dark"] .glass-effect {
-  background-color: rgba(15, 23, 42, 0.8);
-  border-color: rgba(30, 41, 59, 0.5);
+  background-color: rgba(var(--color-secondary-800rgb), 0.7); /* Use RGB of a dark surface */
+  /* Assuming --color-secondary-800rgb: 30, 41, 59 */
+  /* background-color: rgba(30, 41, 59, 0.7); */
+  border-color: rgba(var(--color-secondary-600rgb), 0.5);
+  /* Assuming --color-secondary-600rgb: 71, 85, 105 */
+  /* border-color: rgba(71, 85, 105, 0.5); */
 }
 
-.text-gradient {
-  background: linear-gradient(to right, #2563eb, #c026d3);
+.text-gradient { /* Using new Primary to Accent */
+  background: linear-gradient(to right, var(--color-primary-500), var(--color-accent-500));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+:root[class~="dark"] .text-gradient { /* Lighter shades for dark mode */
+  background: linear-gradient(to right, var(--color-primary-400), var(--color-accent-400));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
 
+
 .shimmer {
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.8s infinite; /* Slightly slower */
   background: linear-gradient(
     to right,
-    #e2e8f0,
-    #f1f5f9,
-    #e2e8f0
+    var(--color-secondary-100) 4%,
+    var(--color-secondary-200) 25%,
+    var(--color-secondary-100) 36%
   );
-  background-size: 200% 100%;
+  background-size: 1000px 100%; /* Wider gradient for smoother shimmer */
 }
 
 :root[class~="dark"] .shimmer {
   background: linear-gradient(
     to right,
-    #1e293b,
-    #334155,
-    #1e293b
+    var(--color-secondary-800) 4%, /* Use the actual surface color */
+    var(--color-secondary-700) 25%, /* Highlight color */
+    var(--color-secondary-800) 36%
   );
+  background-size: 1000px 100%;
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Adjusted for new dark theme */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px; /* Slightly wider for easier grabbing */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f5f9;
+  background-color: var(--color-secondary-100);
 }
-
 :root[class~="dark"] ::-webkit-scrollbar-track {
-  background-color: #1e293b;
+  background-color: var(--color-secondary-900); /* Main dark bg */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: var(--color-secondary-300);
   border-radius: 9999px;
+  border: 2px solid var(--color-secondary-100); /* Track color as border for padding effect */
 }
-
 :root[class~="dark"] ::-webkit-scrollbar-thumb {
-  background-color: #475569;
+  background-color: var(--color-secondary-600);
+  border: 2px solid var(--color-secondary-900);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8;
+  background-color: var(--color-secondary-400);
 }
-
 :root[class~="dark"] ::-webkit-scrollbar-thumb:hover {
-  background-color: #64748b;
+  background-color: var(--color-secondary-500);
 }
 
-/* Selection styles */
+/* Selection styles - Using new primary */
 ::selection {
-  background-color: #dbeafe;
-  color: #1e3a8a;
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
 }
 
 :root[class~="dark"] ::selection {
-  background-color: rgba(30, 58, 138, 0.5);
-  color: #dbeafe;
+  background-color: var(--color-primary-800); 
+  color: var(--color-primary-100);
 }

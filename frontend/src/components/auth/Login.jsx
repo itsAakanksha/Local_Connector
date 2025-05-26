@@ -27,14 +27,13 @@ const Login = () => {
   const { theme, toggleTheme } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
-  
-  const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/'
 
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true })
     }
-  }, [user, navigate, from])
+  }, [user, from]) // Remove navigate from dependencies as it's stable
 
   const handleChange = (e) => {
     const { name, value } = e.target

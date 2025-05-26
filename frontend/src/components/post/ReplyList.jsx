@@ -7,29 +7,32 @@ import Avatar from '../ui/Avatar'
 import Button from '../ui/Button'
 import Input from '../ui/Input'
 import LoadingSpinner from '../ui/LoadingSpinner'
+import { postService } from '../../services/postService'
 
-const ReplyList = ({ post, onReply, onClose }) => {
-  const { user } = useAuth()
+const ReplyList = ({ post, onReply, onClose }) => {  const { user } = useAuth()
   const [replyText, setReplyText] = useState('')
-  const [replies, setReplies] = useState(post.replies || [])
+  const [replies, setReplies] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch replies if needed
-    if (post._id && (!post.replies || post.replies.length === 0)) {
-      fetchReplies()
-    }
-  }, [post._id])
+    // Always fetch replies when component mounts
+    fetchReplies()
+  }, [post._id || post.id])
 
   const fetchReplies = async () => {
     setIsLoading(true)
     try {
-      // This would be an API call to fetch replies
-      // For now, we'll use the replies from the post
-      setReplies(post.replies || [])
+      const response = await postService.getReplies(post._id || post.id)
+      if (response.success) {
+        setReplies(response.data.replies || [])
+      } else {
+        console.error('Failed to fetch replies:', response.message)
+        setReplies([])
+      }
     } catch (error) {
       console.error('Error fetching replies:', error)
+      setReplies([])
     } finally {
       setIsLoading(false)
     }
@@ -57,20 +60,19 @@ const ReplyList = ({ post, onReply, onClose }) => {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Original Post Preview */}
+    <div className="space-y-6">      {/* Original Post Preview */}
       <div className="bg-muted/50 rounded-lg p-4 border-l-4 border-primary">
         <div className="flex items-start space-x-3">
-          <Avatar user={post.author} size="sm" />
+          <Avatar user={post.authorId} size="sm" />
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-2">
-              <span className="font-medium text-foreground">{post.author?.name}</span>
+              <span className="font-medium text-foreground">{post.authorId?.name}</span>
               <span className="text-muted-foreground text-sm">
-                @{post.author?.username}
+                @{post.authorId?.username}
               </span>
             </div>
             <p className="text-sm text-muted-foreground line-clamp-3">
-              {post.content}
+              {post.textContent}
             </p>
           </div>
         </div>
@@ -118,8 +120,7 @@ const ReplyList = ({ post, onReply, onClose }) => {
           </div>
         ) : replies.length > 0 ? (
           <AnimatePresence>
-            {replies.map((reply, index) => (
-              <motion.div
+            {replies.map((reply, index) => (              <motion.div
                 key={reply._id || reply.id || index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -127,14 +128,12 @@ const ReplyList = ({ post, onReply, onClose }) => {
                 transition={{ duration: 0.2, delay: index * 0.05 }}
                 className="flex items-start space-x-3 p-4 bg-muted/30 rounded-lg"
               >
-                <Avatar user={reply.author} size="sm" />
+                <Avatar user={reply.authorId} size="sm" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 mb-2">
-                    <span className="font-medium text-foreground text-sm">
-                      {reply.author?.name}
-                    </span>
+                  
                     <span className="text-muted-foreground text-xs">
-                      @{reply.author?.username}
+                      @{reply.authorId?.username || 'unknown'}
                     </span>
                     <span className="text-muted-foreground">·</span>
                     <span className="text-muted-foreground text-xs">
@@ -142,7 +141,7 @@ const ReplyList = ({ post, onReply, onClose }) => {
                     </span>
                   </div>
                   <p className="text-foreground text-sm leading-relaxed">
-                    {reply.content}
+                    {reply.textContent}
                   </p>
                 </div>
               </motion.div>

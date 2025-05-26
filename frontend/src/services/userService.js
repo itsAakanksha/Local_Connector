@@ -18,6 +18,12 @@ api.interceptors.request.use((config) => {
 
 // User service functions
 export const userService = {
+  // Get current user profile
+  async getCurrentUser() {
+    const response = await api.get('/auth/me');
+    return response.data;
+  },
+
   // Get user profile by username
   async getUserProfile(username) {
     const response = await api.get(`/users/${username}`);

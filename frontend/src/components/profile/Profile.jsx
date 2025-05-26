@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'react-hot-toast'
@@ -21,7 +21,7 @@ import { userService } from '../../services/userService'
 import { postService } from '../../services/postService'
 
 const Profile = () => {
-  const { userId } = useParams()
+  const { username } = useParams()
   const navigate = useNavigate()
   const { user: currentUser } = useAuth()
   console.log('Current user:', currentUser)
@@ -29,7 +29,7 @@ const Profile = () => {
   const [profile, setProfile] = useState(null)
   const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-    const [isFollowing, setIsFollowing] = useState(false)
+  const [isFollowing, setIsFollowing] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [editForm, setEditForm] = useState({
     name: '',
@@ -37,18 +37,15 @@ const Profile = () => {
     location: ''
   })
 
-  // If no userId in params, it's the current user's profile
-  // If userId matches current user's username, it's also own profile
-  const isOwnProfile = !userId || userId === currentUser?.username
+  // If no username in params, it's the current user's profile
+  // If username matches current user's username, it's also own profile
+  const isOwnProfile = !username || username === currentUser?.username
 
-  useEffect(() => {
-    fetchProfile()
-  },[userId, currentUser])
-  
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     setIsLoading(true)
     try {
-      if (isOwnProfile) {        // Use current user data
+      if (isOwnProfile) {
+        // Use current user data
         setProfile(currentUser)
         setEditForm({
           name: currentUser?.name || '',
@@ -73,14 +70,20 @@ const Profile = () => {
       toast.error('Failed to load profile')
       if (error.message === 'User not found') {
         navigate('/')
-      }
-    } finally {
-      setIsLoading(false)    }
-  }
+      }    } finally {
+      setIsLoading(false)
+    }
+  }, [isOwnProfile, username, currentUser])
+
+  useEffect(() => {
+    if (currentUser) {
+      fetchProfile()
+    }
+  }, [fetchProfile, currentUser])
 
   const fetchUserPosts = async () => {
     try {
-      const targetUsername = userId || currentUser?.username
+      const targetUsername = username || currentUser?.username
       if (!targetUsername) return
 
       const response = await userService.getUserPosts(targetUsername)

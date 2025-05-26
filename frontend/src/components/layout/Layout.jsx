@@ -24,11 +24,10 @@ const Layout = ({ children }) => {
   const navigate = useNavigate()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-
   const navigation = [
     { name: 'Feed', href: '/', icon: HomeIcon },
     { name: 'Create', href: '/create', icon: PlusIcon },
-    { name: 'Profile', href: `/profile/${user?.id}`, icon: UserIcon },
+    { name: 'Profile', href: `/profile/${user?.username}`, icon: UserIcon },
   ]
 
   const handleLogout = () => {

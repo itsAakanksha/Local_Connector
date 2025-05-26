@@ -320,15 +320,14 @@ const Feed = () => {
             <label className="block text-sm font-medium text-foreground mb-3">
               Post Type
             </label>
-            <div className="grid grid-cols-2 gap-2">
-              {postTypes.map((type) => (
+            <div className="grid grid-cols-2 gap-2">              {postTypes.map((type) => (
                 <button
                   key={type.value}
                   onClick={() => setFilters(prev => ({ ...prev, type: type.value }))}
-                  className={`p-3 text-left rounded-lg border transition-colors ${
+                  className={`p-3 text-left rounded-lg border transition-all duration-200 ${
                     filters.type === type.value
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'bg-card border-border hover:bg-muted'
+                      ? 'bg-primary text-primary-foreground border-primary ring-1 ring-primary ring-offset-2 ring-offset-background shadow-lg'
+                      : 'bg-card border-border hover:bg-muted hover:border-muted-foreground hover:shadow-md'
                   }`}
                 >
                   <div className="flex items-center space-x-2">
@@ -345,15 +344,14 @@ const Feed = () => {
             <label className="block text-sm font-medium text-foreground mb-3">
               Sort By
             </label>
-            <div className="space-y-2">
-              {sortOptions.map((option) => (
+            <div className="space-y-2">              {sortOptions.map((option) => (
                 <button
                   key={option.value}
                   onClick={() => setFilters(prev => ({ ...prev, sortBy: option.value }))}
-                  className={`w-full p-3 text-left rounded-lg border transition-colors ${
+                  className={`w-full p-3 text-left rounded-lg border transition-all duration-200 ${
                     filters.sortBy === option.value
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'bg-card border-border hover:bg-muted'
+                      ? 'bg-primary text-primary-foreground border-primary ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg'
+                      : 'bg-card border-border hover:bg-muted hover:border-muted-foreground hover:shadow-md'
                   }`}
                 >
                   <span className="text-sm font-medium">{option.label}</span>

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { userService } from '../../services/userService';
 
 const AuthContext = createContext();
 
@@ -57,14 +58,29 @@ export const AuthProvider = ({ children }) => {
     );
 
     return () => axios.interceptors.response.eject(interceptor);
-  }, []);// Load user on app start
+  }, []);  // Load user on app start
   useEffect(() => {
     const loadUser = async () => {
       if (token) {
-        // If we have a token, consider user authenticated
-        // The user data will be populated by components that need it
-        // If the token is invalid, axios interceptors will handle logout
-        setIsAuthenticated(true);
+        try {
+          // Fetch current user data to populate user state
+          const response = await userService.getCurrentUser();
+          if (response.success) {
+            setUser(response.data);
+            setIsAuthenticated(true);
+          } else {
+            // Token exists but is invalid, clear it
+            setToken(null);
+            setIsAuthenticated(false);
+            localStorage.removeItem('cityscope-token');
+          }
+        } catch (error) {
+          console.error('Error loading user:', error);
+          // Token is invalid, clear authentication state
+          setToken(null);
+          setIsAuthenticated(false);
+          localStorage.removeItem('cityscope-token');
+        }
       }
       setLoading(false);
     };

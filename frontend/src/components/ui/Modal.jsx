@@ -61,11 +61,10 @@ const Modal = ({
           />
           
           {/* Modal Container */}
-          <div className="flex min-h-full items-center justify-center p-4">
-            <motion.div
+          <div className="flex min-h-full items-center justify-center p-4">            <motion.div
               className={`
-                relative w-full bg-white dark:bg-secondary-900 rounded-2xl shadow-large
-                border border-secondary-200 dark:border-secondary-700
+                relative w-full theme-bg rounded-2xl shadow-large
+                border theme-border 
                 ${sizes[size]}
                 ${className}
               `}
@@ -79,10 +78,9 @@ const Modal = ({
               }}
             >
               {/* Header */}
-              {(title || showCloseButton) && (
-                <div className="flex items-center justify-between p-6 border-b border-secondary-200 dark:border-secondary-700">
+              {(title || showCloseButton) && (                <div className="flex items-center justify-between p-6 border-b theme-border">
                   {title && (
-                    <h3 className="text-lg font-semibold text-secondary-900 dark:text-secondary-100">
+                    <h3 className="text-lg font-semibold theme-text">
                       {title}
                     </h3>
                   )}

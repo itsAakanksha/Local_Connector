@@ -11,15 +11,14 @@ const Button = forwardRef(({
   className = '', 
   onClick,
   ...props 
-}, ref) => {
-  const baseClasses = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-secondary-900 disabled:opacity-50 disabled:cursor-not-allowed";
+}, ref) => {  const baseClasses = "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
     const variants = {
-    primary: "bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white shadow-soft hover:shadow-medium",
-    secondary: "bg-secondary-100 hover:bg-secondary-200 dark:bg-secondary-800 dark:hover:bg-secondary-700 focus:ring-secondary-500 text-secondary-900 dark:text-secondary-100 shadow-soft hover:shadow-medium",
-    ghost: "text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800 focus:ring-secondary-500",
-    outline: "border border-secondary-300 dark:border-secondary-600 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-800 focus:ring-secondary-500",
-    danger: "bg-error-600 hover:bg-error-700 focus:ring-error-500 text-white shadow-soft hover:shadow-medium",
-    success: "bg-success-600 hover:bg-success-700 focus:ring-success-500 text-white shadow-soft hover:shadow-medium"
+    primary: "btn-primary",
+    secondary: "btn-secondary", 
+    ghost: "btn-ghost",
+    outline: "btn-outline",
+    danger: "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800 focus:ring-red-500/20 text-white shadow-sm hover:shadow-md",
+    success: "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 focus:ring-green-500/20 text-white shadow-sm hover:shadow-md"
   };
   
   const sizes = {
